@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Labyrinth - Sector 2</title>
+    <style>
+        body {
+            background-color: #0d0000; /* Darker red-tinted background for high stakes */
+            color: #ff3333; /* Crimson red theme for Sector 2 */
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            background: rgba(20, 10, 10, 0.95);
+            border: 2px solid #ff3333;
+            padding: 30px;
+            border-radius: 10px;
+            box-sizing: border-box;
+            box-shadow: 0 0 30px rgba(255, 51, 51, 0.3);
+        }
+
+        .villain-header {
+            text-align: center;
+            background: #220000;
+            border: 1px solid #ff3333;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 25px;
+        }
+
+        h2 {
+            color: #ff3333;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 0;
+            animation: blink 1.5s infinite;
+        }
+
+        .villain-speech {
+            color: #ff9999;
+            font-style: italic;
+            text-align: left;
+            line-height: 1.6;
+            font-size: 1.05rem;
+            border-left: 3px solid #ff3333;
+            padding-left: 15px;
+        }
+
+        .challenge-box {
+            background: #110505;
+            border: 1px solid #441111;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            color: #ff6666;
+        }
+
+        .locked {
+            opacity: 0.2;
+            pointer-events: none;
+            filter: blur(5px);
+        }
+
+        .challenge-title {
+            color: #ff3333;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .status-tag {
+            font-size: 0.8rem;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            background: #000;
+            border: 1px solid #ff3333;
+            color: #ff6666;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1rem;
+            box-sizing: border-box;
+            margin-top: 10px;
+        }
+
+        button {
+            background: #ff3333;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        button:hover {
+            background: #ff6666;
+        }
+
+        .error-msg {
+            color: #ff0000;
+            font-size: 0.8rem;
+            margin-top: 5px;
+            display: none;
+            font-weight: bold;
+        }
+
+        #portal-unlock {
+            display: none;
+            background: #220000;
+            border: 2px dashed #ff3333;
+            padding: 25px;
+            text-align: center;
+            margin-top: 20px;
+            border-radius: 6px;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>⚠️ WARNING: SECTOR 2 ARRIVAL ⚠️</h2>
+        
+        <!-- VILLAIN MOCKING SPEECH -->
+        <div class="villain-header">
+            <p class="villain-speech">
+                "Hahaha! Did you honestly think solving those first three trivial riddles meant something, Divyani? How pathetic! You think you can outrun me? You think you can outsmart Time itself?! 
+                <br><br>
+                That was just the warmup. From here on out, I will be your worst nightmare. Let's see how long your precious brain lasts before it completely melts under the pressure. The real maddening chaos starts NOW!"
+            </p>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- CHALLENGE 4                                -->
+        <!-- ========================================== -->
+        <div class="challenge-box" id="box4">
+            <div class="challenge-title">
+                <span>CHALLENGE 04</span>
+                <span class="status-tag" id="status4">❌ LOCKED</span>
+            </div>
+            <p class="question">NAME THE FIRST FOOD YOU SHARED THAT MADE AKSHAR SAY YRRR HMM YE TOH BHAUT AACHA HAI VHAA VHAA VHAA for the very first time? </p>
+            <input type="text" id="ans4" placeholder="Enter password...">
+            <button onclick="checkAnswer(4)">Submit Answer</button>
+            <div class="error-msg" id="error4">WRONG! TIME IS RUNNING OUT!</div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- CHALLENGE 5 (Starts Locked)                -->
+        <!-- ========================================== -->
+        <div class="challenge-box locked" id="box5">
+            <div class="challenge-title">
+                <span>CHALLENGE 05</span>
+                <span class="status-tag" id="status5">❌ LOCKED</span>
+            </div>
+            <p class="question">WHICH FOOD U BOTH USUALLY COOK TOGETHER WHEN U ARE ALONE IN THE ROOM ?</p>
+            <input type="text" id="ans5" placeholder="Enter password...">
+            <button onclick="checkAnswer(5)">Submit Answer</button>
+            <div class="error-msg" id="error5">WRONG! TRY HARDER!</div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- CHALLENGE 6 (Starts Locked)                -->
+        <!-- ========================================== -->
+        <div class="challenge-box locked" id="box6">
+            <div class="challenge-title">
+                <span>CHALLENGE 06</span>
+                <span class="status-tag" id="status6">❌ LOCKED</span>
+            </div>
+            <p class="question">WHAT MATHEMATICAL SYMBOL REPRESENTS AKSHARS LOVE FOR U?</p>
+            <input type="text" id="ans6" placeholder="Enter password...">
+            <button onclick="checkAnswer(6)">Submit Answer</button>
+            <div class="error-msg" id="error6">INCORRECT. HE IS MINE FOREVER AT THIS RATE!</div>
+        </div>
+
+        <!-- NEXT PORTAL (Unlocks at the end of Sector 2) -->
+        <div id="portal-unlock">
+            <h3 style="color: #ff3333; margin: 0;">🌀 SECTOR 2 COMPLETED 🌀</h3>
+            <p style="color: #fff; font-size: 0.9rem; margin: 10px 0;">You've angered Time. Quick, scan this final map coordinates to escape to Sector 3!</p>
+            <!-- Put the link to your Sector 3 QR code image here -->
+            <img src="TIME PORTAL 2.png" alt="Next Sector QR Code" style="max-width:200px; border:5px solid #fff; margin-top:10px;">
+        </div>
+    </div>
+
+    <script>
+        // ==========================================
+        // SET YOUR CORRECT ANSWERS FOR SECTOR 2 HERE
+        // (Keep them lowercase, spaces are fine!)
+        // ==========================================
+        const targetAnswers = {
+            4: ["chicken fried rice", "chicken rice","rice"],   
+            5: ["maggi"],    
+            6: ["∞","infinite","infinity"]       
+        };
+
+        // Initialize first box of this page
+        document.getElementById('box4').classList.remove('locked');
+        document.getElementById('status4').innerText = "⏳ ACTIVE";
+
+        function checkAnswer(num) {
+            const userAnswer = document.getElementById('ans' + num).value.trim().toLowerCase().replace(/\s+/g, ' ');
+            const correctAnswersList = targetAnswers[num];
+            const errorElement = document.getElementById('error' + num);
+            const statusElement = document.getElementById('status' + num);
+
+            if (correctAnswersList.includes(userAnswer)) {
+                errorElement.style.display = 'none';
+                statusElement.innerText = "✅ SOLVED";
+                statusElement.style.color = "#ff3333";
+                document.getElementById('ans' + num).disabled = true;
+
+                if (num < 6) {
+                    const nextNum = num + 1;
+                    document.getElementById('box' + nextNum).classList.remove('locked');
+                    document.getElementById('status' + nextNum).innerText = "⏳ ACTIVE";
+                } else if (num === 6) {
+                    document.getElementById('portal-unlock').style.display = 'block';
+                    document.getElementById('portal-unlock').scrollIntoView({ behavior: 'smooth' });
+                }
+            } else {
+                errorElement.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>

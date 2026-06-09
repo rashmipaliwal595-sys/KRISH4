@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Time Portal</title>
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #00ff66;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow-x: hidden;
+        }
+
+        .portal-container {
+            max-width: 600px;
+            width: 100%;
+            background: rgba(16, 16, 16, 0.9);
+            border: 2px solid #ff3333;
+            box-shadow: 0 0 20px rgba(255, 51, 51, 0.2);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .villain-title {
+            color: #ff3333;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 10px;
+            animation: glitch 1s linear infinite;
+        }
+
+        .subtitle {
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+            border-bottom: 1px dashed #333;
+            padding-bottom: 15px;
+        }
+
+        .message-box {
+            background: #111;
+            border-left: 4px solid #ff3333;
+            padding: 15px;
+            text-align: left;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .audio-section {
+            background: #1a1a1a;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 35px;
+            border: 1px solid #333;
+        }
+
+        .audio-section p {
+            margin-top: 0;
+            color: #00ff66;
+            font-size: 0.9rem;
+        }
+
+        audio {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        /* The Ordinary Button Setup */
+        .portal-btn {
+            display: inline-block;
+            background: transparent;
+            color: #ff3333;
+            border: 2px solid #ff3333;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(255, 51, 51, 0.1);
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .portal-btn:hover {
+            background: #ff3333;
+            color: #000;
+            box-shadow: 0 0 25px rgba(255, 51, 51, 0.6);
+            transform: scale(1.03);
+        }
+
+        /*===============================================*/
+        /* UNLOCKED QR PORTAL DESIGN (New CSS)           */
+        /*===============================================*/
+        #qr-portal-reveal {
+            display: none; /* Invisible at start */
+            margin-top: 10px;
+            animation: portalFadeIn 1.2s ease-out;
+        }
+
+        .portal-alert-text {
+            color: #00ff66;
+            text-shadow: 0 0 10px rgba(0, 255, 102, 0.4);
+            font-size: 1.3rem;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        #qr-portal-reveal img {
+            width: 240px;
+            height: 240px;
+            border: 3px solid #00ff66;
+            border-radius: 8px;
+            box-shadow: 0 0 30px rgba(0, 255, 102, 0.4);
+            background: #ffffff;
+            padding: 10px;
+            margin-top: 5px;
+        }
+
+        @keyframes portalFadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes glitch {
+            0% { text-shadow: 2px 2px #00ffff; }
+            50% { text-shadow: -2px -2px #ff00ff; }
+            100% { text-shadow: 2px -2px #00ff66; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="portal-container">
+        
+        <h1 class="villain-title">I AM TIME</h1>
+        
+        <div class="subtitle">PORTAL STATUS: ACTIVE // AKSHAR_STATUS: CAPTURED</div>
+
+
+        <div class="message-box">
+            <p>Tick-Tock, Divyani. Your ordinary day has just run out of seconds.</p>
+            <p>Akshar is no longer in your world. I have pulled him into the gears of the timeline. If you wish to pull him back before the clock strikes zero, you must listen to my instructions closely and face my labyrinth.</p>
+        </div>
+
+
+        <div class="audio-section">
+            <p>⚡ PLAY TRANSMISSION FROM TIME:</p>
+            
+            <audio controls>
+                <source src="VILLAINreal.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+
+
+        <button id="action-trigger-btn" class="portal-btn" onclick="openSector1Portal()">
+            Enter the Labyrinth
+        </button>
+
+
+        <div id="qr-portal-reveal">
+            <div class="portal-alert-text">🌀 Portal Opened Successfully 🌀</div>
+            <p style="color: #888; font-size: 0.9rem; margin-bottom: 20px;">
+                Link established. Scan this map to override reality and infiltrate Sector 1!
+            </p>
+            
+            <img src="TIME PORTALIN.png" alt="Sector 1 Navigation QR Code">
+        </div>
+
+    </div>
+
+    <script>
+        function openSector1Portal() {
+            // 1. Instantly hide your ordinary entry link button
+            document.getElementById('action-trigger-btn').style.display = 'none';
+            
+            // 2. Unveil the hidden green local QR map setup
+            const qrContainer = document.getElementById('qr-portal-reveal');
+            qrContainer.style.display = 'block';
+            
+            // 3. Smooth focus scroll directly down to the QR code layout box
+            qrContainer.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+
+</body>
+</html>

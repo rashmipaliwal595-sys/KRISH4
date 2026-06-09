@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Labyrinth - Sector 3</title>
+    <style>
+        body {
+            background-color: #000a12; /* Deep cold blue theme for glitching system */
+            color: #00d2ff; /* Electric cyan blue */
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            background: rgba(10, 20, 30, 0.95);
+            border: 2px solid #00d2ff;
+            padding: 30px;
+            border-radius: 10px;
+            box-sizing: border-box;
+            box-shadow: 0 0 30px rgba(0, 210, 255, 0.3);
+        }
+
+        .villain-header {
+            text-align: center;
+            background: #001525;
+            border: 1px solid #00d2ff;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 25px;
+        }
+
+        h2 {
+            color: #00d2ff;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 0;
+        }
+
+        .villain-speech {
+            color: #b3f0ff;
+            font-style: italic;
+            text-align: left;
+            line-height: 1.6;
+            font-size: 1.05rem;
+            border-left: 3px solid #00d2ff;
+            padding-left: 15px;
+        }
+
+        .challenge-box {
+            background: #00050a;
+            border: 1px solid #003355;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            color: #80e5ff;
+        }
+
+        .locked {
+            opacity: 0.2;
+            pointer-events: none;
+            filter: blur(5px);
+        }
+
+        .challenge-title {
+            color: #00d2ff;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .status-tag {
+            font-size: 0.8rem;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            background: #000;
+            border: 1px solid #00d2ff;
+            color: #00d2ff;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1rem;
+            box-sizing: border-box;
+            margin-top: 10px;
+        }
+
+        button {
+            background: #00d2ff;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        button:hover {
+            background: #80e5ff;
+        }
+
+        .error-msg {
+            color: #ff3333;
+            font-size: 0.8rem;
+            margin-top: 5px;
+            display: none;
+            font-weight: bold;
+        }
+
+        #portal-unlock {
+            display: none;
+            background: #001525;
+            border: 2px dashed #00d2ff;
+            padding: 25px;
+            text-align: center;
+            margin-top: 20px;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>🌀 CRITICAL: SECTOR 3 SYSTEM GLITCH 🌀</h2>
+        
+        <!-- VILLAIN DESPERATE SPEECH -->
+        <div class="villain-header">
+            <p class="villain-speech">
+                "HOW?! How are you breaking through my sectors, Divyani?! This is impossible! You are rewriting the timeline! 
+                <br><br>
+                Fine. You think you're close to saving Akshar? My matrix is glitching, but I will freeze time itself before I let you win. These next three layers are locked behind the deepest corners of reality. If you fail even once here... your precious Akshar is deleted permanently!"
+            </p>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- CHALLENGE 7                                -->
+        <!-- ========================================== -->
+        <div class="challenge-box" id="box7">
+            <div class="challenge-title">
+                <span>CHALLENGE 07</span>
+                <span class="status-tag" id="status7">❌ LOCKED</span>
+            </div>
+            <p class="question">THE PLACE WHERE AKSHAR BITES U? </p>
+            <input type="text" id="ans7" placeholder="Enter encryption key...">
+            <button onclick="checkAnswer(7)">Submit Answer</button>
+            <div class="error-msg" id="error7">SYSTEM REJECTED. DATA CORRUPTING...</div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- CHALLENGE 8 (Starts Locked)                -->
+        <!-- ========================================== -->
+        <div class="challenge-box locked" id="box8">
+            <div class="challenge-title">
+                <span>CHALLENGE 08</span>
+                <span class="status-tag" id="status8">❌ LOCKED</span>
+            </div>
+            <p class="question">PART OF YOUR BODY WHERE AKSHAR TOUCH U AND MAKE U NERVOUS 😁 aur your heart beat increases? </p>
+            <input type="text" id="ans8" placeholder="Enter encryption key...">
+            <button onclick="checkAnswer(8)">Submit Answer</button>
+            <div class="error-msg" id="error8">WRONG KEY. THE CLOCK TRIPS BACKWARD!</div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- CHALLENGE 9 (Starts Locked)                -->
+        <!-- ========================================== -->
+        <div class="challenge-box locked" id="box9">
+            <div class="challenge-title">
+                <span>CHALLENGE 09</span>
+                <span class="status-tag" id="status9">❌ LOCKED</span>
+            </div>
+            <p class="question">WHICH PART OF YOUR BODY DID AKSHAR PRESS BUT U STOP HIM TO DO SO BUT HE IS ZIDDI HE PRESS IT AND ITS SIZE IS ALSO INCREASED PERMANENTLY</p>
+            <input type="text" id="ans9" placeholder="Enter encryption key...">
+            <button onclick="checkAnswer(9)">Submit Answer</button>
+            <div class="error-msg" id="error9">INCORRECT. YOU CANNOT DEFEAT TIME.</div>
+        </div>
+
+        <!-- FINAL PORTAL LINK (Unlocks at the end of Sector 3) -->
+        <div id="portal-unlock">
+            <h3 style="color: #00d2ff; margin: 0;">⚡ SECTOR 3 COMPLIANCE REACHED ⚡</h3>
+            <p style="color: #fff; font-size: 0.9rem; margin: 10px 0;">You have broken his defenses! Scan this final spatial map to enter the **Final Boss Level (Challenge 10)**!</p>
+            <!-- Put the QR code link to Challenge 10 here -->
+            <img src="Untitled QR code.png" alt="Final Mega Challenge QR Code" style="max-width:200px; border:5px solid #fff; margin-top:10px;">
+        </div>
+    </div>
+
+    <script>
+        // ==========================================
+        // SET YOUR CORRECT ANSWERS FOR SECTOR 3 HERE
+        // ==========================================
+        const targetAnswers = {
+            7: ["hip", "butt"],   
+            8: ["vagina"],    
+            9: ["boobies","boobs"]       
+        };
+
+        // Initialize first box of Sector 3
+        document.getElementById('box7').classList.remove('locked');
+        document.getElementById('status7').innerText = "⏳ ACTIVE";
+
+        function checkAnswer(num) {
+            const userAnswer = document.getElementById('ans' + num).value.trim().toLowerCase().replace(/\s+/g, ' ');
+            const correctAnswersList = targetAnswers[num];
+            const errorElement = document.getElementById('error' + num);
+            const statusElement = document.getElementById('status' + num);
+
+            if (correctAnswersList.includes(userAnswer)) {
+                errorElement.style.display = 'none';
+                statusElement.innerText = "✅ BYPASSED";
+                statusElement.style.color = "#00d2ff";
+                document.getElementById('ans' + num).disabled = true;
+
+                if (num < 9) {
+                    const nextNum = num + 1;
+                    document.getElementById('box' + nextNum).classList.remove('locked');
+                    document.getElementById('status' + nextNum).innerText = "⏳ ACTIVE";
+                } else if (num === 9) {
+                    document.getElementById('portal-unlock').style.display = 'block';
+                    document.getElementById('portal-unlock').scrollIntoView({ behavior: 'smooth' });
+                }
+            } else {
+                errorElement.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>

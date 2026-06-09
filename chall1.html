@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Labyrinth - Challenges</title>
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #00ff66;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            background: rgba(16, 16, 16, 0.9);
+            border: 2px solid #ff3333;
+            padding: 30px;
+            border-radius: 10px;
+            box-sizing: border-box;
+            box-shadow: 0 0 20px rgba(255, 51, 51, 0.1);
+        }
+
+        h2 {
+            color: #ff3333;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 0;
+        }
+
+        .challenge-box {
+            background: #111;
+            border: 1px solid #333;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        /* Used to hide the next challenges until unlocked */
+        .locked {
+            opacity: 0.3;
+            pointer-events: none;
+            filter: blur(4px);
+        }
+
+        .challenge-title {
+            color: #ff3333;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .status-tag {
+            font-size: 0.8rem;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            background: #000;
+            border: 1px solid #ff3333;
+            color: #00ff66;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1rem;
+            box-sizing: border-box;
+            margin-top: 10px;
+        }
+
+        button {
+            background: #ff3333;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            margin-top: 10px;
+            width: 100%;
+            transition: background 0.2s;
+        }
+
+        button:hover {
+            background: #ff6666;
+        }
+
+        .error-msg {
+            color: #ff3333;
+            font-size: 0.8rem;
+            margin-top: 5px;
+            display: none;
+        }
+
+        /* Portal/QR Code Unlocked Box */
+        #portal-unlock {
+            display: none;
+            background: #001a08;
+            border: 2px dashed #00ff66;
+            padding: 25px;
+            text-align: center;
+            margin-top: 20px;
+            border-radius: 6px;
+            box-shadow: 0 0 15px rgba(0, 255, 102, 0.2);
+        }
+
+        #portal-unlock img {
+            max-width: 200px;
+            margin-top: 15px;
+            border: 5px solid #fff;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Time Labyrinth: Sector 1</h2>
+        <p style="text-align: center; color: #888; font-size: 0.9rem; margin-bottom: 30px;">
+            Solve all 3 puzzles to unlock the next temporal jump portal.
+        </p>
+
+        <!-- ========================================== -->
+        <!-- CHALLENGE 1                                -->
+        <!-- ========================================== -->
+        <div class="challenge-box" id="box1">
+            <div class="challenge-title">
+                <span>CHALLENGE 01</span>
+                <span class="status-tag" id="status1">❌ LOCKED</span>
+            </div>
+            <!-- WRITE YOUR FIRST QUESTION HERE -->
+            <p class="question">NAME THE PLACE WHERE YOU FIRST SAW AKSHAR ON YOURR  UNPLANED DATE ? (Type answer in lowercase)</p>
+            
+            <input type="text" id="ans1" placeholder="Enter password...">
+            <button onclick="checkAnswer(1)">Submit Answer</button>
+            <div class="error-msg" id="error1">INCORRECT PASSWORD. TIME IS TICKING.</div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- CHALLENGE 2 (Starts Locked)                -->
+        <!-- ========================================== -->
+        <div class="challenge-box locked" id="box2">
+            <div class="challenge-title">
+                <span>CHALLENGE 02</span>
+                <span class="status-tag" id="status2">❌ LOCKED</span>
+            </div>
+            <!-- WRITE YOUR SECOND QUESTION HERE -->
+            <p class="question">AT WHICH DAY YOU BOTH GO FOR YOUR DATE?</p>
+            
+            <input type="text" id="ans2" placeholder="Enter password...">
+            <button onclick="checkAnswer(2)">Submit Answer</button>
+            <div class="error-msg" id="error2">INCORRECT PASSWORD. TIME IS TICKING.</div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- CHALLENGE 3 (Starts Locked)                -->
+        <!-- ========================================== -->
+        <div class="challenge-box locked" id="box3">
+            <div class="challenge-title">
+                <span>CHALLENGE 03</span>
+                <span class="status-tag" id="status3">❌ LOCKED</span>
+            </div>
+            <!-- WRITE YOUR THIRD QUESTION HERE -->
+            <p class="question">WHAT WAS THE FLAVOUR OF THE ICECREAM MINDA GAVE U ON THAT SPECIAL DAY  ?</p>
+            
+            <input type="text" id="ans3" placeholder="Enter password...">
+            <button onclick="checkAnswer(3)">Submit Answer</button>
+            <div class="error-msg" id="error3">INCORRECT PASSWORD. TIME IS TICKING.</div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- THE QR CODE PORTAL (Unlocks at the end)     -->
+        <!-- ========================================== -->
+        <div id="portal-unlock">
+            <h3 style="color: #00ff66; margin: 0; text-transform: uppercase;">🌀 PORTAL UNLOCKED 🌀</h3>
+            <p style="color: #fff; font-size: 0.9rem; margin: 10px 0;">Scan this coordinate map to jump to Sector 2 before Time collapses this zone!</p>
+            
+            <!-- REPLACE 'your-next-qr-image.png' WITH YOUR NEXT QR CODE IMAGE LINK -->
+            <img src="TIME POARTEL1.png" alt="Next Sector QR Code">
+        </div>
+    </div>
+
+   <script>
+        // ==========================================
+        // SET YOUR CORRECT ANSWERS HERE 
+        // (Keep them lowercase for easier matching!)
+        // ==========================================
+        const targetAnswers = {
+            // You can add multiple acceptable answers inside the [ ] brackets, separated by commas!
+            1: ["chawri bazar", "metro station","chawri bazar metro station","station"],   
+            2: ["saturday"],    
+            3: ["chocolate"]       
+        };
+
+        // Automatically unlock the first challenge box when page loads
+        document.getElementById('box1').classList.remove('locked');
+        document.getElementById('status1').innerText = "⏳ ACTIVE";
+
+        function checkAnswer(num) {
+            const userAnswer = document.getElementById('ans' + num).value.trim().toLowerCase();
+            const correctAnswersList = targetAnswers[num];
+            const errorElement = document.getElementById('error' + num);
+            const statusElement = document.getElementById('status' + num);
+
+            // This checks if the user's answer matches ANY of the words in your list
+            if (correctAnswersList.includes(userAnswer)) {
+                // Correct Answer setup
+                errorElement.style.display = 'none';
+                statusElement.innerText = "✅ SOLVED";
+                statusElement.style.color = "#00ff66";
+                document.getElementById('ans' + num).disabled = true;
+
+                if (num < 3) {
+                    // Unlock the next challenge block
+                    const nextNum = num + 1;
+                    document.getElementById('box' + nextNum).classList.remove('locked');
+                    document.getElementById('status' + nextNum).innerText = "⏳ ACTIVE";
+                } else if (num === 3) {
+                    // If challenge 3 is solved, open the QR Code Portal!
+                    document.getElementById('portal-unlock').style.display = 'block';
+                    document.getElementById('portal-unlock').scrollIntoView({ behavior: 'smooth' });
+                }
+            } else {
+                // Wrong Answer setup
+                errorElement.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>

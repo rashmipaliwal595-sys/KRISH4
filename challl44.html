@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE COLLAPSE - Sector 4</title>
+    <style>
+        body {
+            background-color: #050000;
+            color: #ffffff;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow: hidden; 
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            background: rgba(10, 5, 5, 0.98);
+            border: 3px solid #ff0000;
+            padding: 30px;
+            border-radius: 10px;
+            box-sizing: border-box;
+            box-shadow: 0 0 50px rgba(255, 0, 0, 0.5);
+            position: relative;
+            z-index: 10;
+        }
+
+        .villain-header {
+            text-align: center;
+            background: #200000;
+            border: 2px solid #ff0000;
+            padding: 20px;
+            border-radius: 6px;
+            margin-bottom: 25px;
+            animation: danger-pulse 1.5s infinite;
+        }
+
+        h2 {
+            color: #ff0000;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-top: 0;
+            font-weight: 900;
+        }
+
+        .villain-speech {
+            color: #ffcccc;
+            font-style: italic;
+            text-align: center;
+            line-height: 1.6;
+            font-size: 1.1rem;
+            margin-bottom: 0;
+        }
+
+        .challenge-box {
+            background: #110000;
+            border: 2px dashed #ff0000;
+            padding: 30px;
+            border-radius: 6px;
+            color: #ffcccc;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .challenge-title {
+            color: #ff0000;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .question {
+            font-size: 1.1rem;
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 15px;
+            background: #000;
+            border: 2px solid #ff0000;
+            color: #ffffff;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.1rem;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        button {
+            background: #ff0000;
+            color: #ffffff;
+            border: none;
+            padding: 15px 30px;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            margin-top: 15px;
+            width: 100%;
+            font-size: 1.2rem;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #cc0000;
+        }
+
+        .error-msg {
+            color: #ff3333;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            display: none;
+            font-weight: bold;
+        }
+
+        /*===============================================*/
+        /* FULL-SCREEN COLLAGE OVERLAY                   */
+        /*===============================================*/
+        #victory-collage {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #000;
+            z-index: 50; 
+            overflow: hidden;
+            animation: fadeIn 2s ease-out; 
+        }
+
+        #victory-collage img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.4; /* Slightly dimmer so text pops brilliantly */
+        }
+
+        /* Stronger backdrop container to ensure message visibility */
+        .victory-text-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #00ff00;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            pointer-events: none;
+            width: 85%;
+            max-width: 450px;
+            z-index: 200; /* Stays crystal clear in front */
+            background: rgba(0, 0, 0, 0.75); /* Dark window behind text */
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 255, 0, 0.3);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.9);
+        }
+
+        /*===============================================*/
+        /* OPTIMIZED PARTICLES                           */
+        /*===============================================*/
+        .emoji-particle {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            font-size: 3.5rem; 
+            pointer-events: none;
+            z-index: 100; /* Moves behind the dark text block but over collage */
+            transform: translate(-50%, -50%) scale(0);
+            will-change: transform, opacity;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes danger-pulse {
+            0% { box-shadow: 0 0 10px rgba(255, 0, 0, 0.4); }
+            50% { box-shadow: 0 0 30px rgba(255, 0, 0, 0.8); }
+            100% { box-shadow: 0 0 10px rgba(255, 0, 0, 0.4); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="game-content">
+        <h2>⚠️ SYSTEM CRASH: REALITY DELETING ⚠️</h2>
+        
+        <div class="villain-header">
+            <p class="villain-speech">
+                "NO! IT'S COLLAPSING! THE MATRIX IS FAILING! HOW CAN YOU BREAK THIS MANY SECRETS, DIVYANI?! 
+                <br><br>
+                This is your final second, Divyani. Tick. Tock. Solve this... if you can!"
+            </p>
+        </div>
+
+        <div class="challenge-box" id="final-box">
+            <div class="challenge-title">CHALLENGE 10 // THE IMPOSSIBLE QUESTION</div>
+            <p class="question">ANSWER IN  ONE WORD... WHY ARE U BOTH TOGETHER??.. (lowercase)</p>
+            <input type="text" id="final-ans" placeholder="Final decryption key...">
+            <button onclick="checkAnswer()">FREE AKSHAR NOW</button>
+            <div class="error-msg" id="final-error">SYSTEM REJECTED. T-MINUS 1 SECOND.</div>
+        </div>
+    </div>
+
+    <div id="victory-collage">
+        <img src="gift.JPEG" alt="Happy Memories Collage">
+        
+        <div class="victory-text-overlay">
+            <h1 style="font-size: 2.8rem; margin: 0 0 10px 0; color: #00ff00; text-shadow: 0 0 15px rgba(0,255,0,0.5);">SUCCESS</h1>
+            <p style="font-size: 1.1rem; color: #fff; font-family: sans-serif; letter-spacing: 1px; text-transform: none; line-height: 1.5; margin: 0;">
+                The Time Labyrinth is deleted.
+                <br><br>
+                Check your WhatsApp right now. 
+                <br>Your Akshar is free... and he is waiting for you!
+            </p>
+        </div>
+    </div>
+
+    <script>
+        const targetAnswers = ["love", "eternal", "connected"];
+
+        function checkAnswer() {
+            const userAnswer = document.getElementById('final-ans').value.trim().toLowerCase().replace(/\s+/g, ' ');
+            const errorElement = document.getElementById('final-error');
+
+            if (targetAnswers.includes(userAnswer)) {
+                errorElement.style.display = 'none';
+                document.getElementById('game-content').style.display = 'none';
+                document.getElementById('victory-collage').style.display = 'block';
+                
+                // Fire stable animation layout
+                startSafeExplosion();
+            } else {
+                errorElement.style.display = 'block';
+            }
+        }
+
+        function startSafeExplosion() {
+            const emojis = ['❤️', '💋', '💖', '💕', '🥰', '💘', '🌹','💟💜'];
+            
+            // Initial mini burst (60 items instead of 300)
+            for(let i = 0; i < 100; i++) {
+                createParticle(emojis, true);
+            }
+
+            // Steady, safe fountain stream (Generates 2 elements every 150ms)
+            setInterval(() => {
+                for(let i = 0; i < 2; i++) {
+                    createParticle(emojis, false);
+                }
+            }, 150);
+        }
+
+        function createParticle(emojis, isInitial) {
+            const el = document.createElement('div');
+            el.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+            el.className = 'emoji-particle';
+            document.body.appendChild(el);
+
+            const angle = Math.random() * Math.PI * 2;
+            const distance = Math.max(window.innerWidth, window.innerHeight) * (isInitial ? 0.7 : 0.5) * (0.3 + Math.random() * 0.7);
+            
+            const tx = Math.cos(angle) * distance;
+            const ty = Math.sin(angle) * distance;
+            
+            const duration = 2000 + Math.random() * 2000;
+            const scale = 1.2 + Math.random() * 1.5; // Smooth size variant
+
+            el.animate([
+                { transform: 'translate(-50%, -50%) scale(0)', opacity: 1 },
+                { transform: `translate(calc(-50% + ${tx}px), calc(-50% + ${ty}px)) scale(${scale})`, opacity: 0 }
+            ], {
+                duration: duration,
+                easing: 'cubic-bezier(0.1, 0.8, 0.3, 1)'
+            });
+
+            setTimeout(() => { el.remove(); }, duration);
+        }
+    </script>
+</body>
+</html>
